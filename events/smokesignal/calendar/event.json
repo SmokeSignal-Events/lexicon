@@ -9,15 +9,15 @@
             "record": {
                 "type": "object",
                 "required": [
-                    "title",
+                    "name",
                     "text",
                     "createdAt"
                 ],
                 "properties": {
-                    "title": {
+                    "name": {
                         "type": "string",
                         "maxLength": 100,
-                        "description": "The event title."
+                        "description": "The name of the event."
                     },
                     "text": {
                         "type": "string",
@@ -39,69 +39,71 @@
                         "format": "datetime",
                         "description": "Client-declared timestamp when this event ends."
                     },
+                    "mode": {
+                        "type": "ref",
+                        "ref": "#mode",
+                        "description": "The attendance mode of the event."
+                    },
+                    "status": {
+                        "type": "ref",
+                        "ref": "#status",
+                        "description": "The status of the event."
+                    },
                     "location": {
-                        "type": "union",
-                        "refs": [
-                            "#locations",
-                            "#location"
-                        ]
+                        "type": "ref",
+                        "ref": "events.smokesignal.calendar.location"
                     }
                 }
             }
         },
-        "locations": {
-            "type": "array",
-            "items": {
-                "type": "ref",
-                "ref": "#location"
-            }
-        },
-        "location": {
-            "type": "union",
-            "refs": [
-                "#placeLocation",
-                "#virtualLocation"
+        "mode": {
+            "type": "token",
+            "description": "The mode of the event.",
+            "default": "events.smokesignal.calendar.event#inperson",
+            "knownValues": [
+                "events.smokesignal.calendar.event#virtual",
+                "events.smokesignal.calendar.event#inperson",
+                "events.smokesignal.calendar.event#hybrid"
             ]
         },
-        "placeLocation": {
-            "type": "object",
-            "description": "A physical location in the form of an address.",
-            "required": [
-                "country"
-            ],
-            "properties": {
-                "country": {
-                    "type": "string"
-                },
-                "postalCode": {
-                    "type": "string"
-                },
-                "region": {
-                    "type": "string"
-                },
-                "locality": {
-                    "type": "string"
-                },
-                "street": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
+        "virtual": {
+            "type": "token",
+            "description": "A virtual event that takes place online."
         },
-        "virtualLocation": {
-            "type": "object",
-            "description": "A virtual location in the form of a uri.",
-            "required": [
-                "uri"
-            ],
-            "properties": {
-                "url": {
-                    "type": "string",
-                    "format": "uri"
-                }
-            }
+        "inperson": {
+            "type": "token",
+            "description": "An in-person event that takes place offline."
+        },
+        "hybrid": {
+            "type": "token",
+            "description": "A hybrid event that takes place both online and offline."
+        },
+        "status": {
+            "type": "token",
+            "description": "The status of the event.",
+            "default": "events.smokesignal.calendar.event#scheduled",
+            "knownValues": [
+                "events.smokesignal.calendar.event#scheduled",
+                "events.smokesignal.calendar.event#rescheduled",
+                "events.smokesignal.calendar.event#cancelled",
+                "events.smokesignal.calendar.event#postponed"
+            ]
+        },
+        "scheduled": {
+            "type": "token",
+            "description": "The event has been created and scheduled."
+        },
+        "rescheduled": {
+            "type": "token",
+            "description": "The event has been rescheduled."
+        },
+        "cancelled": {
+            "type": "token",
+            "description": "The event has been cancelled."
+        },
+        "postponed": {
+            "type": "token",
+            "description": "The event has been postponed and a new start date has not been set."
         }
     }
 }

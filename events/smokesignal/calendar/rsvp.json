@@ -19,6 +19,7 @@
                     },
                     "status": {
                         "type": "string",
+                        "default": "events.smokesignal.calendar.rsvp#interested",
                         "knownValues": [
                             "events.smokesignal.calendar.rsvp#interested",
                             "events.smokesignal.calendar.rsvp#going",
