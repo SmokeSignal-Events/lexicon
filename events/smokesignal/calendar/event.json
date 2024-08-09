@@ -52,18 +52,15 @@
         "locations": {
             "type": "array",
             "items": {
-                "type": "union",
-                "refs": [
-                    "#placeLocation",
-                    "#virtualLocation"
-                ]
+                "type": "ref",
+                "ref": "#location"
             }
         },
         "location": {
             "type": "union",
             "refs": [
-                "#locations",
-                "#location"
+                "#placeLocation",
+                "#virtualLocation"
             ]
         },
         "placeLocation": {
