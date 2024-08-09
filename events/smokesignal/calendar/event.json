@@ -1,0 +1,110 @@
+{
+    "lexicon": 1,
+    "id": "events.smokesignal.calendar.event",
+    "defs": {
+        "main": {
+            "type": "record",
+            "description": "Record containing a Smoke Signal event.",
+            "key": "tid",
+            "record": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "text",
+                    "createdAt"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "The event title."
+                    },
+                    "text": {
+                        "type": "string",
+                        "maxLength": 3000,
+                        "description": "The event description and content."
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Client-declared timestamp when this event was originally created."
+                    },
+                    "startsAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Client-declared timestamp when this event starts."
+                    },
+                    "endsAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "Client-declared timestamp when this event ends."
+                    },
+                    "location": {
+                        "type": "union",
+                        "refs": [
+                            "#locations",
+                            "#location"
+                        ]
+                    }
+                }
+            }
+        },
+        "locations": {
+            "type": "array",
+            "items": {
+                "type": "union",
+                "refs": [
+                    "#placeLocation",
+                    "#virtualLocation"
+                ]
+            }
+        },
+        "location": {
+            "type": "union",
+            "refs": [
+                "#locations",
+                "#location"
+            ]
+        },
+        "placeLocation": {
+            "type": "object",
+            "description": "A physical location in the form of an address.",
+            "required": [
+                "country"
+            ],
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "locality": {
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "virtualLocation": {
+            "type": "object",
+            "description": "A virtual location in the form of a uri.",
+            "required": [
+                "uri"
+            ],
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        }
+    }
+}

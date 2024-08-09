@@ -1,0 +1,20 @@
+{
+    "lexicon": 1,
+    "id": "events.smokesignal.app.profile",
+    "defs": {
+        "main": {
+            "type": "record",
+            "description": "A declaration of a Smoke Signal profile.",
+            "key": "literal:self",
+            "record": {
+                "type": "object",
+                "properties": {
+                    "tz": {
+                        "type": "string",
+                        "description": "The time zone of the profile."
+                    }
+                }
+            }
+        }
+    }
+}
