@@ -76,6 +76,10 @@
                     "type": "string",
                     "format": "uri",
                     "description": "The URL of the virtual location."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The title of the URL.",
                 }
             }
         }
