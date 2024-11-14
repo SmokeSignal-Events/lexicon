@@ -69,7 +69,7 @@
             "type": "object",
             "description": "A virtual location in the form of a uri.",
             "required": [
-                "uri"
+                "url"
             ],
             "properties": {
                 "url": {
