@@ -57,7 +57,7 @@
             }
         },
         "mode": {
-            "type": "token",
+            "type": "string",
             "description": "The mode of the event.",
             "default": "events.smokesignal.calendar.event#inperson",
             "knownValues": [
@@ -79,7 +79,7 @@
             "description": "A hybrid event that takes place both online and offline."
         },
         "status": {
-            "type": "token",
+            "type": "string",
             "description": "The status of the event.",
             "default": "events.smokesignal.calendar.event#scheduled",
             "knownValues": [
